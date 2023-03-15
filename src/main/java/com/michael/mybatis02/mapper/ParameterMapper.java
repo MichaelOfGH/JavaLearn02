@@ -8,13 +8,25 @@ import java.util.Map;
 
 
 public interface ParameterMapper {
+
+    /**
+     * 获取全部用户
+     *
+     * @return
+     */
     List<User> getAllUser();
 
 
+    /**
+     * 根据id获取用户
+     *
+     * @param id
+     * @return
+     */
     User getUserByUserId(int id);
 
     /**
-     *
+     * 检查登录
      *
      * @param username
      * @param password
@@ -32,7 +44,7 @@ public interface ParameterMapper {
     User checkLoginByParam(@Param("username") String username, @Param("password") String password);
 
 
-    /***
+    /**
      * 使用Map进行传参
      *
      * @param map
@@ -40,7 +52,12 @@ public interface ParameterMapper {
      */
     User checkLoginByMap(Map<String, Object> map);
 
-
+    /**
+     * 添加新用户
+     *
+     * @param user
+     * @return
+     */
     int insertUser(User user);
 
 

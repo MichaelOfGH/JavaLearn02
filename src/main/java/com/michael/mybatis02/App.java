@@ -31,9 +31,9 @@ public class App {
         User user = new User(0, "Mike", "password", "18", 'F', "michaelofgle@gmail.com");
         int insertUser = mapper.insertUser(user);
         System.out.println(insertUser);
+*/
         User user = mapper.checkLoginByParam("Mike", "password");
         System.out.println(user);
-*/
 
         /*
          *
