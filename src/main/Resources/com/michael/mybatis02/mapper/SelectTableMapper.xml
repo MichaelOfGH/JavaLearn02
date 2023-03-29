@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.michael.mybatis02.mapper.SelectTableMapper">
+
+    <resultMap id="empResultMap" type="com.michael.mybatis02.model.User">
+        <id property="id" column="id"></id>
+        <result property="username" column="username" ></result>
+        <result property="password" column="password" ></result>
+        <result property="age" column="age" ></result>
+        <result property="email" column="email" ></result>
+
+
+    </resultMap>
+
+
+    <select id="getUserByTableName" resultMap="empResultMap">
+        select * from ${tableName}
+    </select>
+
+
+</mapper>

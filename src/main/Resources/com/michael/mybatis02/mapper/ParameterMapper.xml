@@ -10,9 +10,8 @@
     </select>
 
     <select id="getUserByUserId" resultType="User">
-        select * from t_user WHERE id = #{id}
+        select * from t_user WHERE id = ${id}
     </select>
-
 
     <!--User checkLogin(String username, String password);-->
     <select id="checkLogin" resultType="User">
@@ -32,6 +31,11 @@
     <!--User checkLoginByParam(@Param("username") String username, @Param("password") String password);-->
     <select id="checkLoginByParam" resultType="User">
         select * from t_user where username=#{username} and password=#{password}
+    </select>
+
+
+    <select id="getUserByIdToMap" resultType="Map">
+        select * from t_user WHERE id = ${id}
     </select>
 
 </mapper>

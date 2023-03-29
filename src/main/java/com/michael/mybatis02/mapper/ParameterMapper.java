@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 
-
 public interface ParameterMapper {
 
     /**
@@ -15,7 +14,6 @@ public interface ParameterMapper {
      * @return
      */
     List<User> getAllUser();
-
 
     /**
      * 根据id获取用户
@@ -43,7 +41,6 @@ public interface ParameterMapper {
      */
     User checkLoginByParam(@Param("username") String username, @Param("password") String password);
 
-
     /**
      * 使用Map进行传参
      *
@@ -60,5 +57,12 @@ public interface ParameterMapper {
      */
     int insertUser(User user);
 
+    /**
+     * 使用Map进行传参
+     *
+     * @param map
+     * @return
+     */
+    Map<String, Object> getUserByIdToMap(@Param("id") int id);
 
 }

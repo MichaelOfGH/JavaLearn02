@@ -21,7 +21,6 @@ public class User {
     public User() {
     }
 
-
     public int getId() {
         return id;
     }
@@ -73,12 +72,12 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", age='" + age + '\'' +
-                ", sex='" + sex + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+            "id=" + id +
+            ", username='" + username + '\'' +
+            ", password='" + password + '\'' +
+            ", age='" + age + '\'' +
+            ", sex='" + sex + '\'' +
+            ", email='" + email + '\'' +
+            '}';
     }
 }

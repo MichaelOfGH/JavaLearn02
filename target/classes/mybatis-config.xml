@@ -9,8 +9,13 @@
 
     <typeAliases>
         <package name="com.michael.mybatis02.model"/>
-
     </typeAliases>
+
+    <!--设置MyBatis的全局配置-->
+<!--    <settings>-->
+<!--        &lt;!&ndash;将_自动映射为驼峰，emp_name->empName  &ndash;&gt;-->
+<!--        <setting name="mapUnderscoreToCamelCase" value="true"/>-->
+<!--    </settings>-->
 
     <environments default="development">
         <environment id="development">

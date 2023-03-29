@@ -1,13 +1,21 @@
 package com.michael.mybatis02;
 
 import com.michael.mybatis02.mapper.ParameterMapper;
+import com.michael.mybatis02.mapper.SelectMapper;
+import com.michael.mybatis02.mapper.SelectTableMapper;
+import com.michael.mybatis02.mapper.UpdateMapper;
 import com.michael.mybatis02.model.User;
 import com.michael.mybatis02.utils.SqlSessionUtils;
+import lombok.var;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.javassist.compiler.ast.Variable;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.CheckedOutputStream;
 
 /**
  *
@@ -15,26 +23,33 @@ import java.util.Map;
 public class App {
     public static void main(String[] args) {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
-        ParameterMapper mapper = sqlSession.getMapper(ParameterMapper.class);
-/*
+        var mapper = sqlSession.getMapper(ParameterMapper.class);
+        var selectmapper = sqlSession.getMapper(SelectMapper.class);
+        var updatemapper = sqlSession.getMapper(UpdateMapper.class);
+
+        /*
         List<User> allUser = mapper.getAllUser();
         allUser.forEach(user -> System.out.println(user));
+
         User user = mapper.getUserByUserId(2);
         System.out.println(user);
         User user = mapper.checkLogin("Michael", "Michael");
         System.out.println(user);
+
+
         Map<String, Object> queryMap = new HashMap<String, Object>();
         queryMap.put("username", "Michael");
         queryMap.put("password", "Michael");
         User user = mapper.checkLoginByMap(queryMap);
         System.out.println(user);
+
         User user = new User(0, "Mike", "password", "18", 'F', "michaelofgle@gmail.com");
         int insertUser = mapper.insertUser(user);
         System.out.println(insertUser);
-*/
+
         User user = mapper.checkLoginByParam("Mike", "password");
         System.out.println(user);
-
+*/
         /*
          *
          * MyBatis获取参数值的两种方式：
@@ -59,6 +74,54 @@ public class App {
          *
          * */
 
+
+
+        /*
+        模糊查询：
+        一般使用 like "%"#{变量名}"%" 这种方式进行查询
+
+        var users = selectmapper.getByUserName("Mich");
+        users.forEach(user -> {
+            System.out.println(user.toString());
+        });
+        */
+
+
+        /*
+        批量删除：
+        一般使用集合进行删除
+        如果不使用集合，用字符串的话，需要用foreach
+        var dels = new ArrayList<Integer>();
+        dels.add(1);
+        dels.add(2);
+        dels.add(3);
+        //updatemapper.DeleteById(dels);
+        updatemapper.DeleteById("1,2,3");
+         */
+
+
+        /*使用动态表名查询
+          需要使用${}，否则#{}会自动创建单引号，使表名不起作用
+         */
+        var selectTableMapper = sqlSession.getMapper(SelectTableMapper.class);
+        var user = selectTableMapper.getUserByTableName("t_user");
+        System.out.println(user);
+
+        /*
+        useGenerateKeys:设置当前标签中的SQL使用了自增的Id
+        keyProperty:将自增的主键的值复制给传输到映射属性
+
+         */
+
+
+
+
+        /*
+        解决列名和属性名不一致的情况：
+        1.为字段起别名(MyBatis中typeAliases节点)
+        2.使用全局配置mapUnderscoreToCamelCase，将_列名自动映射为驼峰命名的字段名
+        3.使用ResultMap设置映射关系，映射时尽量将所有列都设置(更新时不需要操作)
+        */
 
     }
 
